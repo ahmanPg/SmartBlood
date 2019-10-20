@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.request.ViewDonor">
+    <TextView
+        android:id="@+id/donorId_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="Edit Donor Details"
+        android:textColor="@color/greenDack"
+        android:textSize="@dimen/sp_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/fName_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/first_name"
+            android:textColor="@color/material_red_500"
+            android:textSize="@dimen/sp_16" />
+
+        <EditText
+            android:id="@+id/fName_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_18"
+            tools:text="Ahmed" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lName_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@+id/fName_layout"
+        app:layout_constraintTop_toBottomOf="@+id/fName_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/last_name"
+            android:textColor="@color/material_red_500"
+            android:textSize="@dimen/sp_16" />
+
+        <EditText
+            android:id="@+id/lName_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nassour"
+            android:textSize="@dimen/sp_18" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/donorGroup_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/weight_layout"
+        app:layout_constraintTop_toBottomOf="@+id/weight_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Group"
+            android:textColor="@color/material_red_500"
+            android:textSize="@dimen/sp_16" />
+
+        <EditText
+            android:id="@+id/donorGroup_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_18" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/donorSex_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/donorGroup_layout"
+        app:layout_constraintTop_toBottomOf="@+id/donorGroup_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:textColor="@color/material_red_500"
+            android:textSize="@dimen/sp_16" />
+
+        <EditText
+            android:id="@+id/donorSex_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_18" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/donorTell_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@+id/lName_layout"
+        app:layout_constraintTop_toBottomOf="@+id/lName_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tel"
+            android:textColor="@color/material_red_500"
+            android:textSize="@dimen/sp_16" />
+
+        <EditText
+            android:id="@+id/donorTel_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+255774337598"
+            android:textSize="@dimen/sp_18" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/district_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@+id/donorTell_layout"
+        app:layout_constraintTop_toBottomOf="@+id/donorTell_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="District"
+            android:textColor="@color/material_red_500"
+            android:textSize="@dimen/sp_16" />
+
+        <EditText
+            android:id="@+id/district_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Central Unguja"
+            android:textSize="@dimen/sp_18" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/province_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@+id/district_layout"
+        app:layout_constraintTop_toBottomOf="@+id/district_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Province"
+            android:textColor="@color/material_red_500"
+            android:textSize="@dimen/sp_16" />
+
+        <EditText
+            android:id="@+id/province_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jumbi"
+            android:textSize="@dimen/sp_18" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/donorNo_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fName_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Donor No"
+            android:textColor="@color/material_red_500"
+            android:textSize="@dimen/sp_16" />
+
+        <EditText
+            android:id="@+id/donorNo_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2025527"
+            android:textSize="@dimen/sp_18" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/weight_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/donorNo_layout"
+        app:layout_constraintTop_toBottomOf="@+id/donorNo_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weight"
+            android:textColor="@color/material_red_500"
+            android:textSize="@dimen/sp_16" />
+
+        <EditText
+            android:id="@+id/weight_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="56 Kg"
+            android:textSize="@dimen/sp_18" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/status_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/donorSex_layout"
+        app:layout_constraintTop_toBottomOf="@+id/donorSex_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="Status"
+            android:textColor="@color/material_red_500"
+            android:textSize="@dimen/sp_16" />
+
+        <Spinner
+            android:id="@+id/status_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/status"
+            android:textSize="@dimen/sp_24" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/emailRequest_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/donorAddress_layout"
+        app:layout_constraintTop_toBottomOf="@+id/donorAddress_layout" />
+
+    <LinearLayout
+        android:id="@+id/button_Layout"
+        android:layout_width="148dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/status_layout">
+
+        <Button
+            android:id="@+id/call_btn"
+            android:layout_width="131dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/home_button"
+            android:paddingStart="@dimen/dp_8"
+            android:text="Save Change"
+            android:textColor="@color/colorWhite" />
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

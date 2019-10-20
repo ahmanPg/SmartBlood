@@ -1,0 +1,47 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+
+    <!--Dp-->
+    <dimen name="dp_0">0dp</dimen>
+    <dimen name="dp_8">8dp</dimen>
+    <dimen name="dp_16">16dp</dimen>
+    <dimen name="dp_100">100dp</dimen>
+    <dimen name="dp_150dp">150dp</dimen>
+    <dimen name="dp_30">30dp</dimen>
+    <dimen name="dp_22">22dp</dimen>
+
+
+    <!--Sp-->
+    <dimen name="sp_15">15sp</dimen>
+    <dimen name="sp_18">18sp</dimen>
+    <dimen name="sp_20">20sp</dimen>
+
+    <!--Splash screen-->
+    <dimen name="splash_icon_height_width">@dimen/dp_100</dimen>
+    <dimen name="splash_icon_margin_top">@dimen/dp_150dp</dimen>
+    <dimen name="splash_app_version_text_size">@dimen/sp_15</dimen>
+    <dimen name="splash_app_version_margin_bottom">@dimen/dp_30</dimen>
+    <dimen name="splash_app_name_text_size">@dimen/sp_20</dimen>
+    <dimen name="sp_24">24sp</dimen>
+    <dimen name="dp_32">32dp</dimen>
+    <dimen name="sp_16">16sp</dimen>
+    <dimen name="dp_64">64dp</dimen>
+    <dimen name="dp_48">48dp</dimen>
+    <dimen name="dp_120">120dp</dimen>
+    <dimen name="dp_280">280dp</dimen>
+    <dimen name="dp_36">36dp</dimen>
+    <dimen name="sp_32">32sp</dimen>
+
+    <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
+         https://developer.android.com/design/patterns/navigation-drawer.html -->
+    <dimen name="navigation_drawer_width">240dp</dimen>
+    <dimen name="appbar_padding">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+</resources>
