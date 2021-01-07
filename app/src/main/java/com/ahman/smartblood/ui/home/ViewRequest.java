@@ -80,7 +80,7 @@ public class ViewRequest extends AppCompatActivity {
                     int success = jsonObject.getInt(KEY_SUCCESS);
                     JSONArray donors;
                     if (success == 1) {
-                        donorList = new ArrayList<>();
+                        donorList = new ArrayList<HashMap<String, String>>();
                         donors = jsonObject.getJSONArray(KEY_DATA);
                         //Iterate through the response and populate donors list
                         for (int i = 0; i < donors.length(); i++) {
@@ -93,7 +93,7 @@ public class ViewRequest extends AppCompatActivity {
                             String donorSex = donor.getString(KEY_DONOR_SEX);
                             String donorLocation = donor.getString(KEY_DONOR_LOCATION);
                             int reqCount = donor.getInt(KEY_REQ_COUNT);
-                            map = new HashMap<>();
+                            map = new HashMap<String, String>();
                             map.put(KEY_DONOR_ID, Integer.toString(donorId));
                             map.put(KEY_DONOR_NAME, donorName);
                             map.put(KEY_DONOR_GROUP, donorGroup);

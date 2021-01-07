@@ -13,6 +13,7 @@ import android.widget.Spinner;
 
 import com.ahman.smartblood.R;
 import com.ahman.smartblood.helper.HttpJsonParser;
+import com.ahman.smartblood.helper.URLs;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,7 +24,7 @@ import java.util.Collection;
 import java.util.HashMap;
 
 public class NeedBlood extends AppCompatActivity {
-    private static final String BASE_URL = "http://192.168.43.156/html/SmartBlood/android/";
+    private static final String BASE_URL = URLs.URL_ALL;
     private static final String KEY_CENTER_NAME = "center_name";
     private static final String KEY_CENTER_ADDRESS = "center_address";
     private static final String KEY_SUCCESS = "success";
@@ -50,7 +51,7 @@ public class NeedBlood extends AppCompatActivity {
 
         new FetchCentersAsyncTask().execute();
         String[] group = new String[]{"O+","O-", "A+", "B+","A-", "B-", "AB+", "AB-"};
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, group);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, group);
         groupChoice.setAdapter(adapter1);
 
 
@@ -90,13 +91,13 @@ public class NeedBlood extends AppCompatActivity {
                 int success = jsonObject.getInt(KEY_SUCCESS);
                 JSONArray centers;
                 if (success == 1) {
-                    centerList = new ArrayList<>();
+                    centerList = new ArrayList<HashMap<String, String>>();
                     centers = jsonObject.getJSONArray(KEY_DATA);
                     //Iterate through the response and populate donors list
                     for (int i = 0; i < centers.length(); i++) {
                         JSONObject center = centers.getJSONObject(i);
                         String centerName = center.getString(KEY_CENTER_NAME);
-                        map = new HashMap<>();
+                        map = new HashMap<String, String>();
                         map.put(KEY_CENTER_NAME, centerName);
                         centerList.add(map);
                     }

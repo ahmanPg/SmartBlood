@@ -71,7 +71,7 @@ public class SplashScreenActivity extends BaseActivity {
                         mAnimatorSet.playTogether(ObjectAnimator.ofFloat(mAppNameView, "alpha", 0, 1, 1, 1),
                                 ObjectAnimator.ofFloat(mAppNameView, "scaleX", 0.3f, 1.05f, 0.9f, 1),
                                 ObjectAnimator.ofFloat(mAppNameView, "scaleY", 0.3f, 1.05f, 0.9f, 1));
-                        mAnimatorSet.setDuration(3000);
+                        mAnimatorSet.setDuration(6000);
                         mAnimatorSet.start();
                     }
                 });
@@ -84,7 +84,7 @@ public class SplashScreenActivity extends BaseActivity {
                         mAnimatorSet.playTogether(ObjectAnimator.ofFloat(mAppVersionView, "alpha", 0, 1, 1, 1),
                                 ObjectAnimator.ofFloat(mAppVersionView, "scaleX", 0.3f, 1.05f, 0.9f, 1),
                                 ObjectAnimator.ofFloat(mAppVersionView, "scaleY", 0.3f, 1.05f, 0.9f, 1));
-                        mAnimatorSet.setDuration(3000);
+                        mAnimatorSet.setDuration(6000);
                         mAnimatorSet.start();
                     }
                 });
@@ -97,7 +97,7 @@ public class SplashScreenActivity extends BaseActivity {
                         mAnimatorSet.playTogether(ObjectAnimator.ofFloat(mAppLogoView, "alpha", 0, 1, 1, 1),
                                 ObjectAnimator.ofFloat(mAppLogoView, "scaleX", 0.3f, 1.05f, 0.9f, 1),
                                 ObjectAnimator.ofFloat(mAppLogoView, "scaleY", 0.3f, 1.05f, 0.9f, 1));
-                        mAnimatorSet.setDuration(3000);
+                        mAnimatorSet.setDuration(6000);
                         mAnimatorSet.start();
                     }
                 });

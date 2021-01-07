@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ahman.smartblood.R;
+import com.ahman.smartblood.data.SharedPrefManager;
 import com.ahman.smartblood.helper.HttpJsonParser;
 import com.ahman.smartblood.ui.MainActivity;
 import com.ahman.smartblood.ui.home.UserAppointmentsFragment;
@@ -40,7 +41,7 @@ import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
     private static  final String  KEY_SUCCESS = "success";
-    private static final String BASE_URL = "http://192.168.43.156/html/SmartBlood/android/";
+    private static final String BASE_URL = "URLs.URL_ALL";
     private static final String KEY_USER_ID = "user_id";
     private String donorId;
     private ProgressDialog pDialog;
@@ -91,9 +92,9 @@ public class HomeActivity extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
             super.onBackPressed();
         }
+        finish();
     }
 
     @Override
@@ -115,7 +116,7 @@ public class HomeActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.action_logout){
-            logOut();
+            SharedPrefManager.logout();
             return true;
         }
 
@@ -155,54 +156,10 @@ public class HomeActivity extends AppCompatActivity {
         public int getCount() {
             return mNumOfTabs;
         }
-    }
-    public void logOut(){
-        class LogOutAsyncTask extends AsyncTask<String, String, String> {
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                //Display progress bar
-                pDialog = new ProgressDialog(HomeActivity.this);
-                pDialog.setMessage("Loading Donor Details. Please wait...");
-                pDialog.setIndeterminate(false);
-                pDialog.setCancelable(false);
-                pDialog.show();
-            }
-
-            @Override
-            protected String doInBackground(String... params) {
-                HttpJsonParser httpJsonParser = new HttpJsonParser();
-                Map<String, String> httpParams = new HashMap<>();
-                JSONObject jsonObject = httpJsonParser.makeHttpRequest(
-                        BASE_URL + "logout.php", "GET", httpParams);
-                try {
-                    int success = jsonObject.getInt(KEY_SUCCESS);
-                    if (success == 1) {
-                        //Parse the JSON response
-
-
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-            protected void onPostExecute(String result) {
-                pDialog.dismiss();
-                runOnUiThread(new Runnable() {
-                    public void run() {
-                        Intent logoutIntent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(logoutIntent);
-
-                    }
-                });
-            }
-
-
-        }
-        new LogOutAsyncTask().execute();
 
     }
+
+
+
 
 }

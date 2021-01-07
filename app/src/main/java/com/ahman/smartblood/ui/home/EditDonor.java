@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.ahman.smartblood.R;
 import com.ahman.smartblood.helper.HttpJsonParser;
 //import com.ahman.smartblood.ui.login.LoginActivity;
@@ -122,7 +121,7 @@ public class EditDonor extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             HttpJsonParser httpJsonParser = new HttpJsonParser();
-            Map<String, String> httpParams = new HashMap<>();
+            Map<String, String> httpParams = new HashMap<String, String>();
             httpParams.put(KEY_DONOR_ID, donorId);
             JSONObject jsonObject = httpJsonParser.makeHttpRequest(
                     BASE_URL + "edit_donor_details.php", "GET", httpParams);
@@ -185,7 +184,7 @@ public class EditDonor extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             HttpJsonParser httpJsonParser = new HttpJsonParser();
-            Map<String, String> httpParams = new HashMap<>();
+            Map<String, String> httpParams = new HashMap<String, String>();
             httpParams.put(KEY_DONOR_ID, donorId);
             httpParams.put(KEY_DONOR_FNAME, fName);
             httpParams.put(KEY_DONOR_LNAME, lName);

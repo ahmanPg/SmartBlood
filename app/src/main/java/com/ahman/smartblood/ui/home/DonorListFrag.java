@@ -86,7 +86,7 @@ public class DonorListFrag extends Fragment {
         @Override
         protected String doInBackground(String... params) {
             HttpJsonParser httpJsonParser = new HttpJsonParser();
-            HashMap<String, String> httpParams = new HashMap<>();
+            HashMap<String, String> httpParams = new HashMap<String, String>();
             httpParams.put(KEY_GROUP_CHOICE, group);
             httpParams.put(KEY_DISTRICT, district);
             JSONObject jsonObject = httpJsonParser.makeHttpRequest(
@@ -95,7 +95,7 @@ public class DonorListFrag extends Fragment {
                 int success = jsonObject.getInt(KEY_SUCCESS);
                 JSONArray donors;
                 if (success == 1) {
-                    donorList = new ArrayList<>();
+                    donorList = new ArrayList<HashMap<String, String>>();
                     donors = jsonObject.getJSONArray(KEY_DATA);
                     //Iterate through the response and populate donors list
                     for (int i = 0; i < donors.length(); i++) {
@@ -107,7 +107,7 @@ public class DonorListFrag extends Fragment {
                         String donorDob = donor.getString(KEY_DONOR_AGE);
                         String donorSex = donor.getString(KEY_DONOR_GENDER);
                         String donorLocation = donor.getString(KEY_DONOR_LOCATION);
-                        map = new HashMap<>();
+                        map = new HashMap<String, String>();
                         map.put(KEY_DONOR_ID, donorId.toString());
                         map.put(KEY_DONOR_NAME, donorName);
                         map.put(KEY_DONOR_GROUP, donorGroup);

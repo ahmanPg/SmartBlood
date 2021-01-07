@@ -82,6 +82,7 @@
     </string-array>
     <!--Questions-->
     <string-array name="questions">
+        <item>---Choose Question---</item>
         <item>Who is your favorite Aunt?</item>
         <item>Where is favorite place?</item>
     </string-array>
@@ -102,7 +103,7 @@
     <string name="why_donate">Why Should You Donate Blood ?</string>
     <string name="action_settings">Settings</string>
     <string name="mobile_number">Tel</string>
-    <string name="sign_in">Sign In</string>
+    <string name="login">Sign In</string>
     <string name="copy_right">CopyRight®2019 by AhmanPg</string>
 
     <!--RequestDialog-->
@@ -175,7 +176,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="username">Username</string>
-    <string name="answer">Answer</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -190,4 +191,34 @@
     <string name="title_activity_admin">AdminActivity</string>
     <string name="manage_appointments">Manage Appoinments</string>
     <string name="you_logged_as_administrator">You logged as Administrator</string>
+
+    <string name="hint_name">Name</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="text_login">Login</string>
+    <string name="text_register">Register</string>
+    <string name="error_message_name">Enter Full Name</string>
+    <string name="error_message_email">Enter Valid Email</string>
+    <string name="error_message_age">Enter Age</string>
+    <string name="error_message_password">Enter Password</string>
+    <string name="success_message">Registration Successful</string>
+    <string name="text_not_member">No account yet? Create one</string>
+    <string name="text_already_member">Already a member? Login</string>
+    <string name="error_email_exists">Email Already Exists</string>
+    <string name="error_password_match">Password Does Not Matches</string>
+    <string name="error_valid_email_password">Wrong Email or Password</string>
+    <!--    <string name="action_settings">Settings</string>-->
+    <string name="text_hello">Hello,</string>
+    <string name="title_activity_login2">Sign in</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="answer">Answer</string>
+    <string name="already_a_member_login">Already a member? Login</string>
+    <string name="province">Province</string>
+    <string name="district">District</string>
+    <string name="gender">gender</string>
+    <string name="blood_group">Blood Group</string>
+    <string name="sign_up">Sign Up</string>
 </resources>

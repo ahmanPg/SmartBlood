@@ -31,7 +31,7 @@ import java.util.Map;
 
 
 public class ViewDonor extends AppCompatActivity {
-    private static final String BASE_URL = "http://192.168.43.156/html/SmartBlood/android/";
+    private static final String BASE_URL = "http://10.0.2.2/SmartBlood/android/";
     private static final String KEY_SUCCESS = "success";
     private static final String KEY_DATA = "data";
     private static final String KEY_FAILURE = "fail";
@@ -50,6 +50,7 @@ public class ViewDonor extends AppCompatActivity {
     private String donorSex;
     private String donorPhone;
     private String donorAddress;
+    private String donorAge;
     private String sms;
 
     private TextView mDonorName_tv;
@@ -57,6 +58,7 @@ public class ViewDonor extends AppCompatActivity {
     private TextView mDonorSex_tv;
     private TextView mDonorPhone_tv;
     private TextView mDonorAddress_tv;
+    private TextView mDonorAge_tv;
     private ProgressDialog pDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +74,7 @@ public class ViewDonor extends AppCompatActivity {
         mDonorSex_tv = findViewById(R.id.donorSex_textView);
         mDonorPhone_tv = findViewById(R.id.donorTel_textView);
         mDonorAddress_tv = findViewById(R.id.donorAddress_textView);
-
+        mDonorAge_tv = findViewById(R.id.donorAge_textView);
         Button mSMSButton = findViewById(R.id.SMS_btn);
         donorPhone = (mDonorPhone_tv).getText().toString();
         Button mCallButton = findViewById(R.id.call_btn);
@@ -158,7 +160,7 @@ public class ViewDonor extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             HttpJsonParser httpJsonParser = new HttpJsonParser();
-            Map<String, String> httpParams = new HashMap<>();
+            Map<String, String> httpParams = new HashMap<String, String>();
             httpParams.put(KEY_DONOR_ID, donorId);
             JSONObject jsonObject = httpJsonParser.makeHttpRequest(
                     BASE_URL + "get_donor_details.php", "GET", httpParams);
@@ -173,6 +175,7 @@ public class ViewDonor extends AppCompatActivity {
                     donorSex = donor.getString(KEY_DONOR_GENDER);
                     donorPhone = donor.getString(KEY_DONOR_PHONE);
                     donorAddress = donor.getString(KEY_DONOR_LOCATION);
+                    donorAge = donor.getString(KEY_DONOR_AGE);
 
                 }
             } catch (JSONException e) {
@@ -192,6 +195,7 @@ public class ViewDonor extends AppCompatActivity {
                     mDonorSex_tv.setText(donorSex);
                     mDonorPhone_tv.setText(donorPhone);
                     mDonorAddress_tv.setText(donorAddress);
+                    mDonorAge_tv.setText(donorAge);
 
                 }
             });
@@ -213,7 +217,7 @@ public class ViewDonor extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             HttpJsonParser httpJsonParser = new HttpJsonParser();
-            Map<String, String> httpParams = new HashMap<>();
+            Map<String, String> httpParams = new HashMap<String, String>();
             httpParams.put(KEY_DONOR_ID, donorId);
             httpParams.put(KEY_DONOR_PHONE, donorPhone);
             JSONObject jsonObject = httpJsonParser.makeHttpRequest(

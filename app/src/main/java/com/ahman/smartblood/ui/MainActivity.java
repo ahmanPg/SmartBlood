@@ -14,11 +14,12 @@ import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+
 import com.ahman.smartblood.MapsActivity;
 import com.ahman.smartblood.R;
 import com.ahman.smartblood.ui.about.AboutActivity;
-import com.ahman.smartblood.ui.registration.DonorForm;
 import com.ahman.smartblood.ui.login.LoginActivity;
+import com.ahman.smartblood.ui.registration.DonorForm;
 import com.ahman.smartblood.ui.request.NeedBlood;
 
 
@@ -32,9 +33,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        
         options = findViewById(R.id.city);
         options.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -47,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             }
+
         });
 
         final Button button = findViewById(R.id.go_button);
@@ -54,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if ("-- Choose an Action --" == spinnerValue) {
                     // Tell the user to choose something
-                    Toast.makeText(MainActivity.this,"Choose an Option",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Choose an Option",
+                            Toast.LENGTH_LONG).show();
 
                     return;
                 }
@@ -66,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         String[] link_of_choice = new String[]{"-- Choose an Action --", "Find Donor", "Find Center"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, link_of_choice);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_dropdown_item, link_of_choice);
         options.setAdapter(adapter);
 
         //be donor button
@@ -83,18 +84,15 @@ public class MainActivity extends AppCompatActivity {
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_search:
-
-                // User chose the "search" item, show the app settings UI...
-                return true;
-
-            case R.id.action_signin:
-                // User chose the "sign in" action, mark the current item
-                // as a sign in...
+            // User chose the "login" action, pull login  form
+            case R.id.action_login:
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 return true;
+            // User chose the "search" item, show the app settings UI...
+            case R.id.action_search:
+                return true;
             case R.id.action_settings:
-//                startActivity(new Intent(getApplicationContext(), .class));
+//                startActivity(new Intent(getApplicationContext(), SettingActivity.class));
             case R.id.action_about:
                 startActivity(new Intent(getApplicationContext(), AboutActivity.class));
                 return true;

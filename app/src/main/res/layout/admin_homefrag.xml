@@ -49,7 +49,7 @@
                     android:layout_width="318dp"
                     android:layout_height="wrap_content"
                     android:text="@string/you_logged_as_administrator"
-                    android:textColor="@color/greenDack"
+                    android:textColor="@color/greenDark"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -142,7 +142,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="120"
-                        android:textColor="@color/greenDack"
+                        android:textColor="@color/greenDark"
                         android:textSize="64sp" />
 
                     <TextView
@@ -209,7 +209,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="28"
-                        android:textColor="@color/greenDack"
+                        android:textColor="@color/greenDark"
                         android:textSize="64sp" />
 
                     <TextView
@@ -255,7 +255,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_16"
                     android:text="@string/saving_lives"
-                    android:textColor="@color/greenDack"
+                    android:textColor="@color/greenDark"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 

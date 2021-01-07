@@ -24,7 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@color/greenDack"
+            android:textColor="@color/greenDark"
             android:text="Current Date"
             android:layout_marginTop="4dp"
             android:textStyle="bold"

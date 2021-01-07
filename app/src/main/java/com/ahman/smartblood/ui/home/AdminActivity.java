@@ -160,7 +160,7 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             protected String doInBackground(String... params) {
                 HttpJsonParser httpJsonParser = new HttpJsonParser();
-                Map<String, String> httpParams = new HashMap<>();
+                Map<String, String> httpParams = new HashMap<String, String>();
                 JSONObject jsonObject = httpJsonParser.makeHttpRequest(
                         BASE_URL + "logout.php", "GET", httpParams);
                 try {

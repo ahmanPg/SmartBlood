@@ -13,25 +13,29 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.ahman.smartblood.R;
 import com.ahman.smartblood.helper.HttpJsonParser;
+import com.ahman.smartblood.helper.URLs;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public class UserProfileFragment extends Fragment {
-    private static final String BASE_URL = "http://192.168.43.156/html/SmartBlood/android/";
+    private static final String BASE_URL = URLs.URL_ALL;
     private static final String KEY_SUCCESS = "success";
     private static final String KEY_DATA = "data";
-    private static final String KEY_DONOR_EMAIL = "user_email";
+    private static final String KEY_DONOR_EMAIL = "donor_email";
     private static final String KEY_DONOR_NAME = "donor_name";
     private static final String KEY_DONOR_GROUP = "donor_group";
     private static final String KEY_DONOR_GENDER = "donor_sex";
     private static final String KEY_DONOR_PHONE = "donor_phone";
     private static final String KEY_DONOR_DOB = "donor_dob";
-    private static final String KEY_USERNAME = "username";
-    private static final String KEY_PASSWORD = "password";
+//    private static final String KEY_USERNAME = "username";
+    private static final String KEY_ID = "donor_id";
     private static final String KEY_DONOR_LOCATION = "donor_location";
     private ProgressDialog pDialog;
 
@@ -44,7 +48,7 @@ public class UserProfileFragment extends Fragment {
     private String donorEmail;
 
     private String username;
-    private String password;
+    private Integer id;
     private TextView mUserName;
     private TextView mDonorName;
     private TextView mUserPhone;
@@ -57,9 +61,9 @@ public class UserProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.user_profilefragment, container, false);
-        SharedPreferences preferences = getActivity().getSharedPreferences("login_info", MODE_PRIVATE);
-        username = preferences.getString("USERNAME", null);
-        password = preferences.getString("PASSWORD", null);
+        SharedPreferences preferences = getActivity().getSharedPreferences("user_details", MODE_PRIVATE);
+        username = preferences.getString("keyusername", null);
+        id = preferences.getInt("keyid", 0);
         new FetchProfileDetailsAsyncTask().execute();
 //        Toast.makeText(getContext(), username+password, Toast.LENGTH_LONG).show();
         mDonorName = view.findViewById(R.id.name);
@@ -90,11 +94,10 @@ public class UserProfileFragment extends Fragment {
         @Override
         protected String doInBackground(String... params) {
             HttpJsonParser httpJsonParser = new HttpJsonParser();
-            Map<String, String> httpParams = new HashMap<>();
-            httpParams.put(KEY_USERNAME, username);
-            httpParams.put(KEY_PASSWORD, password);
+            Map<String, String> httpParams = new HashMap<String, String>();
+            httpParams.put(KEY_ID, id.toString());
             JSONObject jsonObject = httpJsonParser.makeHttpRequest(
-                    BASE_URL + "get_profile_details.php", "GET", httpParams);
+                    BASE_URL + "get_donor_details.php", "GET", httpParams);
             try {
                 int success = jsonObject.getInt(KEY_SUCCESS);
                 JSONObject donor;

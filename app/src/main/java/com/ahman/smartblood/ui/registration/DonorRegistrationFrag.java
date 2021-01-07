@@ -5,25 +5,33 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.ahman.smartblood.R;
-import com.ahman.smartblood.helper.HttpJsonParser;
+import com.ahman.smartblood.data.SharedPrefManager;
+import com.ahman.smartblood.helper.URLs;
+import com.ahman.smartblood.helper.VolleySingleton;
+import com.ahman.smartblood.model.User;
 import com.ahman.smartblood.ui.login.LoginActivity;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,46 +43,31 @@ import java.util.Locale;
 import java.util.Map;
 
 public class DonorRegistrationFrag extends Fragment {
-//    private UserRegistrationFrag.OnFragmentInteractionListener mListener;
-    private static final String BASE_URL = "http://192.168.43.156/html/SmartBlood/android/";
-    private static final String KEY_SUCCESS = "success";
-    private static final String KEY_FAILURE = "fail";
     private static final String KEY_USERNAME = "username";
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_EMAIL = "email";
     private static final String KEY_QUESTION = "question";
     private static final String KEY_ANSWER = "answer";
 
-    private static final String KEY_FNAME = "fname";
-    private static final String KEY_LNAME = "lname";
-    private static final String KEY_TEL = "phone";
-    private static final String KEY_DISTRICT = "district";
-    private static final String KEY_PROVINCE = "province";
-    private static final String KEY_DOB = "dob";
-    private static final String KEY_SEX = "sex";
-    private static final String KEY_WEIGHT = "weight";
-    private static final String KEY_GROUP = "group";
-
     private String username;
     private String password;
     private String email;
     private String secQuestion;
     private String answer;
-
-    private String district;
-    private String province;
     private String firstName;
     private String lastName;
     private String tel;
+    private String province;
+    private String district;
     private String dob;
     private String sex;
     private String weight;
     private String group;
+
     private ProgressDialog pDialog;
     Button mSaveButton;
-    Calendar myCalendar;
-    EditText mDob_edt;
-
+    TextInputEditText mBirthDate;
+    Calendar mCalendar;
 
     private UserRegistrationViewModel mViewModel;
 
@@ -82,175 +75,154 @@ public class DonorRegistrationFrag extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
-
-
-
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.donor_registration_fragment, container, false);
-
-//        Toast.makeText(getActivity(), "hjjjhhj", Toast.LENGTH_LONG).show();
-
-//        if (username != null) {
-////        DonorForm activity = (DonorForm) getActivity();
-//            try {
-////            Bundle savedData = activity.getSavedData();
-////            username = savedData.getString(KEY_USERNAME);
-//
-//                Toast.makeText(getActivity(), username, Toast.LENGTH_LONG).show();
-//            } catch (NullPointerException e) {
-//                Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
-//                Log.e("NullPointerException", e.toString());
-//            }
-//        }
-        return view;
+        return inflater.inflate(R.layout.donor_registration_fragment, container, false);
     }
 
     @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         final Spinner mProvinceChoice = view.findViewById(R.id.dropdownProvince);
-        myCalendar = Calendar.getInstance();
-
-        mDob_edt = view.findViewById(R.id.dob_editText);
+        mCalendar = Calendar.getInstance();
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
                 // TODO Auto-generated method stub
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                mCalendar.set(Calendar.YEAR, year);
+                mCalendar.set(Calendar.MONTH, monthOfYear);
+                mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateLabel();
             }
 
         };
 
-        mDob_edt.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                new DatePickerDialog(getActivity(), date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
+        mBirthDate = view.findViewById(R.id.textInputEditDOB);
+        mBirthDate.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            // TODO Auto-generated method stub
+            new DatePickerDialog(getActivity(), date, mCalendar
+                    .get(Calendar.YEAR), mCalendar.get(Calendar.MONTH),
+                    mCalendar.get(Calendar.DAY_OF_MONTH)).show();
+        }
         });
+
 
         mSaveButton = view.findViewById(R.id.btn_saveDonor);
         mSaveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences preferences = getActivity().getSharedPreferences("Registration_info", Context.MODE_PRIVATE);
-                username = preferences.getString(KEY_USERNAME, null);
-                password = preferences.getString(KEY_PASSWORD, null);
-                email = preferences.getString(KEY_EMAIL, null);
-                secQuestion = preferences.getString(KEY_QUESTION, null);
-                answer = preferences.getString(KEY_ANSWER, null);
-                firstName = ((EditText) view.findViewById(R.id.fname_editText)).getText().toString();
-                lastName = ((EditText) view.findViewById(R.id.lname_editText)).getText().toString();
-                tel = ((EditText) view.findViewById(R.id.tel_editText)).getText().toString();
-                province = ((Spinner) view.findViewById(R.id.dropdownProvince)).getSelectedItem().toString();
-                district = ((Spinner) view.findViewById(R.id.dropDownDistrict)).getSelectedItem().toString();
-                dob = ((EditText) view.findViewById(R.id.dob_editText)).getText().toString();
-                sex = ((Spinner) view.findViewById(R.id.dropDownSex)).getSelectedItem().toString();
-                weight = ((EditText) view.findViewById(R.id.weight_editText)).getText().toString();
-                group = ((Spinner) view.findViewById(R.id.dropDownGroup)).getSelectedItem().toString();
-                if (username != null){
-                    new RegisterUserAsyncTask().execute();
-                }
+        @Override
+        public void onClick(View v) {
+            firstName = ((TextInputEditText) view.findViewById(R.id.textInputEditFirstName)).getText().toString();
+            lastName = ((TextInputEditText) view.findViewById(R.id.textInputEditLastName)).getText().toString();
+            tel = ((TextInputEditText) view.findViewById(R.id.textInputEditPhone)).getText().toString();
+            province = ((Spinner) view.findViewById(R.id.dropdownProvince)).getSelectedItem().toString();
+            district = ((Spinner) view.findViewById(R.id.dropDownDistrict)).getSelectedItem().toString();
+            dob = ((TextInputEditText) view.findViewById(R.id.textInputEditDOB)).getText().toString();
+            sex = ((Spinner) view.findViewById(R.id.dropDownSex)).getSelectedItem().toString();
+            weight = ((TextInputEditText) view.findViewById(R.id.textInputEditWeight)).getText().toString();
+            group = ((Spinner) view.findViewById(R.id.dropDownGroup)).getSelectedItem().toString();
+
+            SharedPreferences pref = getActivity().getSharedPreferences("Registration_info", Context.MODE_PRIVATE);
+            username = pref.getString(KEY_USERNAME, null);
+            password = pref.getString(KEY_PASSWORD, null);
+            email = pref.getString(KEY_EMAIL, null);
+            secQuestion = pref.getString(KEY_QUESTION, null);
+            answer = pref.getString(KEY_ANSWER, null);
+            if (username != null){
+               registerUser(view);
             }
-        });
+        }
+    });
 
     }
+
+
+
     private void updateLabel() {
         String myFormat = "yy/MM/dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-        mDob_edt.setText(sdf.format(myCalendar.getTime()));
+        mBirthDate.setText(sdf.format(mCalendar.getTime()));
     }
 
-//    @Override
-//    public void onFragmentInteraction(String key, String value) {
-//        Toast.makeText(getActivity(), key, Toast.LENGTH_LONG).show();
-//
-//    }
+    private void registerUser(View view) {
 
+        //first we will do the validations
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_REGISTER,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+//                            pDialog.cancel();
 
+                        try {
+                            //converting response to json object
+                            JSONObject obj = new JSONObject(response);
+                            //if no error in response
+                            if (!obj.getBoolean("error")) {
+                                Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_SHORT).show();
 
-    private class RegisterUserAsyncTask extends AsyncTask<String, String, String> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            //Display progress bar
-            pDialog = new ProgressDialog(getActivity());
-            pDialog.setMessage("Loading your Details. Please wait...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
-            pDialog.show();
-        }
+                                //getting the user from the response
+                                JSONObject userJson = obj.getJSONObject("user");
 
-        @Override
-        protected String doInBackground(String... params) {
-            HttpJsonParser httpJsonParser = new HttpJsonParser();
-            Map<String, String> httpParams = new HashMap<>();
-            httpParams.put(KEY_USERNAME, username);
-            httpParams.put(KEY_PASSWORD, password);
-            httpParams.put(KEY_EMAIL, email);
-            httpParams.put(KEY_QUESTION, secQuestion);
-            httpParams.put(KEY_ANSWER, answer);
+                                //creating a new user object
+                                User user = new User(
+                                        userJson.getInt("id"),
+                                        userJson.getString("username"),
+                                        userJson.getString("email"),
+                                        userJson.getString("type")
+                                );
 
-            httpParams.put(KEY_FNAME, firstName);
-            httpParams.put(KEY_LNAME, lastName);
-            httpParams.put(KEY_PROVINCE, province);
-            httpParams.put(KEY_DISTRICT, district);
-            httpParams.put(KEY_TEL, tel);
-            httpParams.put(KEY_DOB, dob);
-            httpParams.put(KEY_SEX, sex);
-            httpParams.put(KEY_WEIGHT, weight);
-            httpParams.put(KEY_GROUP, group);
-            JSONObject jsonObject = httpJsonParser.makeHttpRequest(
-                    BASE_URL + "save_registration.php", "POST", httpParams);
-            try {
-                int success = jsonObject.getInt(KEY_SUCCESS);
-                JSONObject donor;
-                if (success == 1) {
-                    //Parse the JSON response
-                    return KEY_SUCCESS;
+                                //storing the user in shared pref
+                                SharedPrefManager.getInstance(getActivity()).userLogin(user);
 
-                }else if (success == 0) {
-                    return KEY_FAILURE;
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
+                                //starting the login Activity
+                                getActivity().finish();
+                                startActivity(new Intent(getActivity(), LoginActivity.class));
+                            } else {
+                                Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        error.printStackTrace();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("username", username);
+                params.put("email", email);
+                params.put("password", password);
+                params.put("question", secQuestion);
+                params.put("answer", answer);
+                params.put("first_name", firstName);
+                params.put("last_name", lastName);
+                params.put("phone", tel);
+                params.put("blood_type", group);
+                params.put("weight", weight);
+                params.put("gender", sex);
+                params.put("birth_date", dob);
+                params.put("district", district);
+                params.put("province", province);
+                params.put("user_type", "2");
+
+                return params;
             }
-            return KEY_SUCCESS;
-        }
-        protected void onPostExecute(final String result) {
-            pDialog.dismiss();
-            getActivity().runOnUiThread(new Runnable() {
-                public void run() {
+        };
 
-                   if (result.equals(KEY_SUCCESS)) {
-                       Toast.makeText(getActivity(), KEY_SUCCESS, Toast.LENGTH_LONG).show();
-                       Intent intent = new Intent(getActivity(), LoginActivity.class);
-                       intent.putExtra(KEY_USERNAME, username);
-                       startActivity(intent);
-                   }else{
-                       Toast.makeText(getActivity(), KEY_FAILURE, Toast.LENGTH_LONG).show();
-                   }
-                }
-            });
-        }
-
-
+        VolleySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 
 }

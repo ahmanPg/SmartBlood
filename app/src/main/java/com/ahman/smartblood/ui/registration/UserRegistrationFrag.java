@@ -1,11 +1,13 @@
 package com.ahman.smartblood.ui.registration;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +18,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.ahman.smartblood.R;
+import com.ahman.smartblood.ui.login.LoginActivity;
 
 
-public class UserRegistrationFrag extends Fragment {
+public class    UserRegistrationFrag extends Fragment {
 //    private OnFragmentInteractionListener mListener;
     private static final String KEY_BUNDLE_NAME = "user_data";
     private static final String KEY_USERNAME = "username";
@@ -63,10 +66,17 @@ public class UserRegistrationFrag extends Fragment {
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button mContinueBtn = view.findViewById(R.id.button_continue);
+        AppCompatTextView mLoginLink = view.findViewById(R.id.appCompatTextViewLoginLink);
+        mLoginLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
+        });
         mUsernameView = view.findViewById(R.id.username_editText);
         mEmailView = view.findViewById(R.id.email_editText);
         mPasswordView = view.findViewById(R.id.password_editText);
-        mQuestionView = view.findViewById(R.id.dropdownQuestions);
+        mQuestionView = view.findViewById(R.id.spinnerDropdownQuestions);
         mAnswerView = view.findViewById(R.id.editText_answer);
 
         mContinueBtn.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +95,7 @@ public class UserRegistrationFrag extends Fragment {
                editor.putString(KEY_EMAIL, email);
                editor.putString(KEY_QUESTION, secQuestion);
                editor.putString(KEY_ANSWER, answer);
-               editor.commit();
+               editor.apply();
                Toast.makeText(getActivity(), preferences.getString(KEY_USERNAME, null), Toast.LENGTH_SHORT).show();
                attemptNextFragment();
 
@@ -101,7 +111,7 @@ public class UserRegistrationFrag extends Fragment {
         boolean cancel = false;
         View focusView = null;
 
-        // Check for a valid password, if the user entered one.
+        // Validate password
         if (TextUtils.isEmpty(password)) {
             mPasswordView.setError(getString(R.string.error_field_required));
             focusView = mPasswordView;
@@ -112,7 +122,7 @@ public class UserRegistrationFrag extends Fragment {
             cancel = true;
         }
 
-        // Check for a valid user.
+        // validate username and email
         if (TextUtils.isEmpty(username)) {
             mUsernameView.setError(getString(R.string.error_field_required));
             focusView = mUsernameView;

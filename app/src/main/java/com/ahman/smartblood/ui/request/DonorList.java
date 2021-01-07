@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.ahman.smartblood.R;
 import com.ahman.smartblood.helper.CheckNetworkStatus;
 import com.ahman.smartblood.helper.HttpJsonParser;
+import com.ahman.smartblood.helper.URLs;
 import com.ahman.smartblood.ui.MainActivity;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,7 +37,7 @@ public class DonorList extends AppCompatActivity {
 //    private static final String KEY_DONOR_PROFILE
 //    /= "donor_profile";
 
-    private static final String BASE_URL = "http://192.168.43.156/html/SmartBlood/android/";
+    private static final String BASE_URL = URLs.URL_ALL;
     private ArrayList<HashMap<String, String>> donorList;
     private ProgressDialog pDialog;
     private ListView donorListView;
@@ -68,14 +69,14 @@ public class DonorList extends AppCompatActivity {
             pDialog = new ProgressDialog(DonorList.this);
             pDialog.setMessage("Loading donors. Please wait...");
             pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
+            pDialog.setCancelable(true);
             pDialog.show();
         }
 
         @Override
         protected String doInBackground(String... params) {
             HttpJsonParser httpJsonParser = new HttpJsonParser();
-            HashMap<String, String> httpParams = new HashMap<>();
+            HashMap<String, String> httpParams = new HashMap<String, String>();
             httpParams.put(KEY_GROUP_CHOICE, group);
             httpParams.put(KEY_DISTRICT, district);
             JSONObject jsonObject = httpJsonParser.makeHttpRequest(
@@ -84,7 +85,7 @@ public class DonorList extends AppCompatActivity {
                 int success = jsonObject.getInt(KEY_SUCCESS);
                 JSONArray donors;
                 if (success == 1) {
-                    donorList = new ArrayList<>();
+                    donorList = new ArrayList<HashMap<String, String>>();
                     donors = jsonObject.getJSONArray(KEY_DATA);
                     //Iterate through the response and populate donors list
                     for (int i = 0; i < donors.length(); i++) {
@@ -96,7 +97,7 @@ public class DonorList extends AppCompatActivity {
                         String donorDob = donor.getString(KEY_DONOR_AGE);
                         String donorSex = donor.getString(KEY_DONOR_GENDER);
                         String donorLocation = donor.getString(KEY_DONOR_LOCATION);
-                        map = new HashMap<>();
+                        map = new HashMap<String, String>();
                         map.put(KEY_DONOR_ID, donorId.toString());
                         map.put(KEY_DONOR_NAME, donorName);
                         map.put(KEY_DONOR_GROUP, donorGroup);
