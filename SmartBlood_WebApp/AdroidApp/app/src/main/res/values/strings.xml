@@ -1,0 +1,186 @@
+<resources>
+    <string-array name="district">
+        <item>-- District --</item>
+        <item>North Pemba</item>
+        <item>South Pemba</item>
+        <item>Zanzibar West</item>
+        <item>Central Unguja</item>
+        <item>South</item>
+        <item>Zanzibar City</item>
+        <item>North Pemba</item>
+        <item>North Unguja</item>
+    </string-array>
+    <!--Gender Array-->
+    <string-array name="sex">
+        <item>male</item>
+        <item>female</item>
+    </string-array>
+    <!--Province Array-->
+    <string-array name="province">
+        <item>-- Province --</item>
+        <item>Chake Chake</item>
+        <item>Gando</item>
+        <item>Wete</item>
+        <item>Pandani</item>
+        <item>Vitongoji</item>
+        <item>Chokocho</item>
+        <item>Mkoani Mjini</item>
+        <item>Mbuzini</item>
+        <item>Pujini</item>
+        <!--North Unguja-->
+        <item>Bandamaji</item>
+        <item>Kidoti</item>
+        <item>Kinyasini</item>
+        <item>Mkokotoni</item>
+        <item>Mahonda</item>
+        <item>Nungwi</item>
+        <!--Central Unguja-->
+        <item>Binguni</item>
+        <item>Jumbi</item>
+        <item>Unguja Ukuu</item>
+        <item>Uroa</item>
+        <item>Michamvi</item>
+        <!--South Unguja-->
+        <item>Bwejuu</item>
+        <item>Jambiani</item>
+        <item>Kizimkazi</item>
+        <item>Muyuni</item>
+        <item>Paje</item>
+
+        <!--Zanzibar West-->
+        <item>Bububu</item>
+        <item>Dimani</item>
+        <item>Fumba</item>
+        <item>Kama</item>
+        <item>Chukwani</item>
+        <item>Kianga</item>
+        <item>Maungani</item>
+        <item>Mtoni Kidatu</item>
+        <!--Zanzibar City-->
+        <item>Amani</item>
+        <item>Chumbuni</item>
+        <item>Shangani</item>
+        <item>Kendwa</item>
+        <item>Mgagadu</item>
+
+
+    </string-array>
+    <string-array name="group">
+        <item>-- Blood Group --</item>
+        <item>O+</item>
+        <item>O-</item>
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+    </string-array>
+    <!--Questions-->
+    <string-array name="questions">
+        <item>Who is your favorite Aunt?</item>
+        <item>Where is favorite place?</item>
+    </string-array>
+    <!--MainActivity-->
+    <string name="app_name">Smart Blood</string>
+    <string name="title_activity_maps">Donors Locations</string>
+    <string name="eligibility_">Eligibility Requirements</string>
+    <string name="about">About</string>
+    <string name="female_">If you are female, you must:\nBe healthy and feeling well\nBe at least 17 years old in most states\nBe at least 5 ft 5 inch\nWeigh at least 150 lbs.</string>
+    <string name="male_">If you are male, you must:\nBe healthy and feeling well\nBe at least 17 years old in most states\nBe at least 5 ft 1 inch \nWeigh at least 130 lbs.\n</string>
+    <string name="info_">Giving blood saves lives. The blood you give is a lifeline in an emergency and for people who need long\-term treatments. Many people would not be alive today if donors had not generously given their blood. We need over 600 blood donations every day to treat patients in need. Each year we need approximately 2000 new donors, as some donors can no longer give blood. Most people between the ages of 17–65 are able to give blood.Around half our current donors are over 45. That is why we need more young people to start giving blood .</string>
+    <string name="our_locations">our locations</string>
+
+    <!--Google map activity-->
+    <string name="google_maps_key">AIzaSyB5LoDIkb6FtZ9MDur7bAU723A2OnJZ_oQ</string>
+    <string name="action_help">Help</string>
+    <string name="go_button">Go</string>
+    <string name="why_donate">Why Should You Donate Blood ?</string>
+    <string name="action_settings">Settings</string>
+    <string name="mobile_number">Tel</string>
+    <string name="sign_in">Sign In</string>
+    <string name="copy_right">CopyRight®2019 by AhmanPg</string>
+
+    <!--RequestDialog-->
+    <string name="receiver_request_type">Request Blood</string>
+    <string name="donor_request_type">Donate Blood</string>
+    <string name="be_a_donor">Be a Donor</string>
+    <string name="donate_blood">donate blood</string>
+    <string name="bottom_line">bottom_line</string>
+    <string name="title_activity_login">Sign in</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="don_t_have_an_acount">Don\'t have an account?</string>
+    <string name="no_acount_yet">No account yet? Create one</string>
+    <string name="title_activity_home">Home</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <!--String related to navigation drawer-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+    <string name="title_activity_two">Sign in</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="birth_date">Birth Date</string>
+    <string name="weight">Weight</string>
+
+
+    <!--general-->
+    <string name="app_about">This is a free Blood Donation Mobile Application which helps needful patients to search for blood donors in their city or area and request for blood donation.Connecting blood donors and needy reduces time which increases the possibility of saving lives and also eliminates the shortage of blood.</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <!--Home with its fragments-->
+    <string name="profile_tab">Profile</string>
+    <string name="appointment_tab">Appointments</string>
+    <string name="home_tab">Home</string>
+    <string name="location_tab"> Locations</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="welcome">Welcome</string>
+    <string name="book_today_promo_">Your blood can save live. </string>
+    <string name="book_today_promo">Book an appointment to donate today</string>
+    <string name="book_appointment_button">Book Appointment</string>
+    <string name="my_blood_type">MY BLOOD TYPE</string>
+    <string name="it_s_in_our_blood">It\'s in our blood.</string>
+    <string name="saving_lives">SAVING LIVES</string>
+    <string name="about_donating">Find out if you are eligible and about the donation process</string>
+    <string name="need_getIntouch">Need help or simply want to get in touch?</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="username">Username</string>
+    <string name="answer">Answer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="question">Question</string>
+    <string name="mon">Mon</string>
+    <string name="sun">Sun</string>
+    <string name="tue">Tue</string>
+    <string name="wed">Wed</string>
+    <string name="thu">Thu</string>
+    <string name="fri">Fir</string>
+    <string name="sat">Sat</string>
+</resources>

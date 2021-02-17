@@ -1,0 +1,95 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../smbb/https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" type="../smbb/text/css" href="style.css">
+  <link rel="stylesheet" type="../text/css" href="css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+  <script src="../smbb/script.js"></script>
+
+<title>regitration</title>
+</head>
+
+<body>
+<?php
+require_once("config.php");
+    include("top.php");
+    include("adminRightSide.php");
+    ?>
+
+
+  
+<div class="jumbotron" style=" margin-top: 15px; width: 69%; padding-top: 5px;">
+  
+  <fieldset style="width: 90%; margin: auto">
+   <?php
+  if(isset($_GET["error"])){
+    ?>
+    <p style="color: red; text-align: center"><?php  echo $_GET["error"] ?></p>
+    <?php
+  }elseif(isset($_GET["status"])){
+    ?>
+    <p style="color: green; text-align: center"><?php  echo $_GET["status"] ?></p>
+    <?php
+  }?>
+  <legend align="center">Donation Form</legend>
+  
+  <form class="form-group" action="save_donation.php" method="post">
+    <select name="donor" class="form-control" style="display:block;">
+      <option value="">Choose Donor</option>
+      <?php
+
+    $donor_query=$db->query("SELECT * FROM donors") or die(mysql_errno());
+
+    while($donor_row=mysqli_fetch_array($donor_query)){
+
+      ?>
+    <option value="<?php echo $donor_row["donorID"] ?>"><?php echo $donor_row["fname"]." ".$donor_row["lname"];?></option>
+
+      <?php
+    }
+    ?>
+    </select>
+    <select class="form-control" name="center">
+      <option>Choose Center</option>
+    <?php 
+    $center_query=$db->query("SELECT centerName FROM center") or die($db->error);
+    while ($center_row=mysqli_fetch_array($center_query)) {
+
+    ?>
+    <option value="<?php echo $center_row['centerName'] ?>"><?php echo $center_row['centerName'];?></option>
+    <?php
+    } 
+    ?>
+    </select>
+
+  <p align="center"><input class="form-control" style="display:block; width: 100%" type="text" name="bp"  placeholder="Enter Blood Pressure"></p>
+  <p align="center"><input class="form-control" style="display:block; width: 100%" type="text" name="haem"  placeholder="Enter haemoglobin Content"></p>
+  <p align="center"><input class="form-control" style="display:block; width: 100%" type="text" name="pulse"  placeholder="Enter pulse"></p>
+  
+  <button type="submit" name="save" class="btn btn-success">Save Details</button>
+  <button type="submit" name="exit" class="btn btn-danger">Cancel</button> 
+  
+  <?php
+  unset($_SESSION["exist"]);
+  ?>
+</form>
+</fieldset>
+  
+</div>
+
+<div style="clear: both"></div>
+  
+</div>
+<div id="footer"></div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery-3.3.1.js"></script> 
+
+</body>
+</html>

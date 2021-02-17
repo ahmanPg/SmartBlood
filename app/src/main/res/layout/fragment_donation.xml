@@ -20,7 +20,7 @@
         android:orientation="vertical"
         tools:context=".ui.request.DonorList"
         >
-        <android.support.v7.widget.SearchView
+        <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"
             android:layout_width="match_parent"
             app:defaultQueryHint="Search donor"
@@ -30,7 +30,7 @@
             android:background="@drawable/edit_text_border"
             app:searchIcon="@drawable/ic_search_black_24dp"
             android:layout_height="wrap_content">
-        </android.support.v7.widget.SearchView>
+        </androidx.appcompat.widget.SearchView>
 
 
         <ListView

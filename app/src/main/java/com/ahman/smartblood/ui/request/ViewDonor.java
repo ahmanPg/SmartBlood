@@ -7,10 +7,9 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,8 +19,6 @@ import android.widget.Toast;
 
 import com.ahman.smartblood.R;
 import com.ahman.smartblood.helper.HttpJsonParser;
-import com.ahman.smartblood.ui.home.AdminActivity;
-import com.ahman.smartblood.ui.home.EditDonor;
 
 import org.json.JSONException;
 import org.json.JSONObject;

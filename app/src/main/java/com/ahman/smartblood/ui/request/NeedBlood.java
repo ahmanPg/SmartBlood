@@ -3,7 +3,7 @@ package com.ahman.smartblood.ui.request;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,12 +30,10 @@ public class NeedBlood extends AppCompatActivity {
     private static final String KEY_SUCCESS = "success";
     private static final String KEY_DATA = "data";
 
-    private  ArrayList<HashMap<String,String>> centerList;
     private HashMap<String, String> map;
     private Spinner groupChoice;
     private Spinner districtChoice;
     private Spinner centerSpinner;
-    private Button need;
 
     private ProgressDialog pDialog;
 
@@ -47,7 +45,7 @@ public class NeedBlood extends AppCompatActivity {
         districtChoice = findViewById(R.id.districtSpinner);
         groupChoice = findViewById(R.id.needBlood);
         centerSpinner = findViewById(R.id.centers);
-        need = findViewById(R.id.startSearch);
+        Button need = findViewById(R.id.startSearch);
 
         new FetchCentersAsyncTask().execute();
         String[] group = new String[]{"O+","O-", "A+", "B+","A-", "B-", "AB+", "AB-"};
@@ -70,6 +68,9 @@ public class NeedBlood extends AppCompatActivity {
 
     }
 
+    /**
+     * leaks here, fix it
+     */
     public class FetchCentersAsyncTask extends AsyncTask<String, String, String> {
         @Override
         protected void onPreExecute() {
@@ -85,13 +86,14 @@ public class NeedBlood extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             HttpJsonParser httpJsonParser = new HttpJsonParser();
-            JSONObject jsonObject = httpJsonParser.makeHttpRequest(
-                    BASE_URL + "fetch_all_centers.php", "GET", null);
+
             try {
+                JSONObject jsonObject = httpJsonParser.makeHttpRequest(
+                        BASE_URL + "fetch_all_centers.php", "GET", null);
                 int success = jsonObject.getInt(KEY_SUCCESS);
                 JSONArray centers;
                 if (success == 1) {
-                    centerList = new ArrayList<HashMap<String, String>>();
+                    ArrayList<HashMap<String, String>> centerList = new ArrayList<HashMap<String, String>>();
                     centers = jsonObject.getJSONArray(KEY_DATA);
                     //Iterate through the response and populate donors list
                     for (int i = 0; i < centers.length(); i++) {
@@ -100,6 +102,7 @@ public class NeedBlood extends AppCompatActivity {
                         map = new HashMap<String, String>();
                         map.put(KEY_CENTER_NAME, centerName);
                         centerList.add(map);
+//                        centerList.update(map);
                     }
                 }
             } catch (JSONException e) {

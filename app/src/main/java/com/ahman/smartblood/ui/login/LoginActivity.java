@@ -1,8 +1,10 @@
 package com.ahman.smartblood.ui.login;
 
 import android.content.Intent;
-import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.textfield.TextInputEditText;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -73,6 +75,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void userLogin() {
         //first getting the values
+
         final String username = mUsernameView.getText().toString();
         final String password = mPasswordView.getText().toString();
         //validating inputs

@@ -4,7 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
@@ -16,7 +16,7 @@ import com.ahman.smartblood.R;
 import com.ahman.smartblood.helper.CheckNetworkStatus;
 import com.ahman.smartblood.helper.HttpJsonParser;
 import com.ahman.smartblood.helper.URLs;
-import com.ahman.smartblood.ui.MainActivity;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

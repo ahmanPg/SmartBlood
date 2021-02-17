@@ -3,7 +3,7 @@ package com.ahman.smartblood.ui.home;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.ahman.smartblood.R;
 import com.ahman.smartblood.helper.CheckNetworkStatus;
 import com.ahman.smartblood.helper.HttpJsonParser;
-import com.ahman.smartblood.ui.request.DonorList;
 import com.ahman.smartblood.ui.request.ViewDonor;
 
 import org.json.JSONArray;

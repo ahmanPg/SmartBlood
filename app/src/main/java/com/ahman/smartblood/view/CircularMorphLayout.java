@@ -7,7 +7,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.drawable.Animatable;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Property;
 import android.view.animation.AccelerateInterpolator;
@@ -16,7 +16,7 @@ import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
 
 /**
- * Created by BloodyBadboy on Jan, 2017.
+ * Created by AhmanPg on Jan, 2019.
  */
 
 public class CircularMorphLayout extends FrameLayout implements Animatable {
